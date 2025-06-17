@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Win Counter</title>
+  <style>
+    body {
+      background-color: transparent;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    #counter {
+      font-size: 100px;
+      color: white;
+      text-shadow: 2px 2px 10px black;
+    }
+  </style>
+</head>
+<body>
+  <div id="counter">0</div>
+
+  <script>
+    let winCount = 0;
+    const counterEl = document.getElementById('counter');
+
+    function updateDisplay() {
+      counterEl.textContent = winCount;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.altKey && e.key === '+') {
+        winCount++;
+        updateDisplay();
+      } else if (e.altKey && (e.key === '-' || e.key === '_')) {
+        winCount--;
+        updateDisplay();
+      }
+    });
+
+    updateDisplay();
+  </script>
+</body>
+</html>
