@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Win Counter</title>
   <style>
     body {
-      background-color: transparent;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    #counter {
-      font-size: 100px;
+      background-color: black;
       color: white;
-      text-shadow: 2px 2px 10px black;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
     }
+    #winDisplay {
+      font-size: 80px;
+      margin: 30px 0;
+    }
+    button {
+      font-size: 30px;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .add { background-color: #28a745; color: white; }
+    .subtract { background-color: #dc3545; color: white; }
   </style>
 </head>
 <body>
-  <div id="counter">0</div>
+  <h1>🏆 Win Counter</h1>
+  <div id="winDisplay">0</div>
+  <button class="add" onclick="changeWin(1)">+1</button>
+  <button class="subtract" onclick="changeWin(-1)">-1</button>
 
   <script>
-    let winCount = 0;
-    const counterEl = document.getElementById('counter');
+    let win = 0;
+    const display = document.getElementById('winDisplay');
 
     function updateDisplay() {
-      counterEl.textContent = winCount;
+      display.textContent = win;
     }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.altKey && e.key === '+') {
-        winCount++;
-        updateDisplay();
-      } else if (e.altKey && (e.key === '-' || e.key === '_')) {
-        winCount--;
-        updateDisplay();
-      }
+    function changeWin(amount) {
+      win += amount;
+      updateDisplay();
+    }
+
+    // Keyboard shortcut: Alt + = to add, Alt + - to subtract
+    document.addEventListener('keydown', function (e) {
+      if (e.altKey && e.key === '=') changeWin(1);
+      if (e.altKey && e.key === '-') changeWin(-1);
     });
 
     updateDisplay();
