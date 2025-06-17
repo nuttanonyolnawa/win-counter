@@ -3,42 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <title>Win Counter</title>
+  <!-- โหลดฟอนต์ Komika Axis -->
+  <link href="https://fonts.googleapis.com/css2?family=Komika+Axis&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: black;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Komika Axis', sans-serif;
       text-align: center;
       padding-top: 50px;
     }
+
     #winDisplay {
-      font-size: 80px;
-      margin: 30px 0;
+      font-size: 32px;
+      color: white;
+      text-shadow:
+        -2.5px -2.5px 0 black,
+        2.5px -2.5px 0 black,
+        -2.5px 2.5px 0 black,
+        2.5px 2.5px 0 black;
     }
+
     button {
-      font-size: 30px;
-      padding: 15px 30px;
+      font-size: 24px;
+      padding: 10px 20px;
       margin: 10px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
     }
+
     .add { background-color: #28a745; color: white; }
     .subtract { background-color: #dc3545; color: white; }
   </style>
 </head>
 <body>
-  <h1>🏆 Win Counter</h1>
-  <div id="winDisplay">0</div>
+  <div id="winDisplay">0 / 1000</div>
   <button class="add" onclick="changeWin(1)">+1</button>
   <button class="subtract" onclick="changeWin(-1)">-1</button>
 
   <script>
     let win = 0;
+    const maxWin = 1000;
     const display = document.getElementById('winDisplay');
 
     function updateDisplay() {
-      display.textContent = win;
+      display.textContent = `${win} / ${maxWin}`;
     }
 
     function changeWin(amount) {
@@ -46,13 +56,7 @@
       updateDisplay();
     }
 
-    // Keyboard shortcut: Alt + = to add, Alt + - to subtract
+    // Alt + = เพิ่ม, Alt + - ลด
     document.addEventListener('keydown', function (e) {
       if (e.altKey && e.key === '=') changeWin(1);
-      if (e.altKey && e.key === '-') changeWin(-1);
-    });
-
-    updateDisplay();
-  </script>
-</body>
-</html>
+      if (e.altKey &&
